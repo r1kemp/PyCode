@@ -8,7 +8,7 @@ class TrieNode(object):
     def __init__(self, char):
         self.char = char
         self.children = dict()
-        self.count = 1
+        self.count = 0
 
     def increment(self):
         self.count += 1
@@ -31,9 +31,14 @@ class Trie(object):
                 new_node = TrieNode(char)
                 node.children[char] = new_node
                 node = new_node
+                node.increment()
 
-    def add_up(self):
+    def add_up(self, K):
         node=self.root
+        ans = node.get_count() // K
+        for it in node.values():
+            ans += it.add_up(K)
+        return ans
 
 
 def read_ints():
