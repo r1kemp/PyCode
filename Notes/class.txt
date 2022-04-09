@@ -1,0 +1,17 @@
+class Pizza(object):
+  radius = 42
+
+  @classmethod
+  def get_rad(cls):
+    return cls.radius
+
+  @staticmethod
+  def mix(x, y):
+    return x + y
+
+  def __init__(self, y):
+    self._y = y
+
+  def do(self, x):
+    return Pizza.mix(x, self._y)
+
